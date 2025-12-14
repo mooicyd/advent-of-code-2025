@@ -48,6 +48,34 @@ func TestRotateLeftAndRight(t *testing.T) {
 	}
 }
 
+func TestTenRoundsInOneGo(t *testing.T) {
+	rotations := []string{"R50", "L1000"}
+
+	result, err := Day_One.Rotations(rotations)
+
+	if result != 11 || err != nil {
+		t.Errorf("Expected 11, got %d and error %v", result, err)
+	}
+}
+
+func TestExpectTenFromRotatingRight(t *testing.T) {
+	rotations := []string{"R950"}
+	result, err := Day_One.Rotations(rotations)
+
+	if result != 10 || err != nil {
+		t.Errorf("Expected 1, got %d and error %v", result, err)
+	}
+}
+
+func TestExpectTenFromRotatingLeft(t *testing.T) {
+	rotations := []string{"L950"}
+	result, err := Day_One.Rotations(rotations)
+
+	if result != 10 || err != nil {
+		t.Errorf("Expected 1, got %d and error %v", result, err)
+	}
+}
+
 // Reads from the AOC Day 1 input
 func TestRotateFromFile(t *testing.T) {
 	file, err := os.Open("./input.txt")
@@ -63,7 +91,7 @@ func TestRotateFromFile(t *testing.T) {
 
 	result, err := Day_One.Rotations(rotations)
 
-	if result != 964 || err != nil {
-		t.Errorf("Expected 964, got %d and error %v", result, err)
+	if result != 5872 || err != nil {
+		t.Errorf("Expected 5872, got %d and error %v", result, err)
 	}
 }
