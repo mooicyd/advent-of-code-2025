@@ -17,24 +17,40 @@ func SumOfInvalidIds(idRanges []string) (sum int, err error) {
 
 func sumOfInvalidIdInRange(start, end string) (sum int) {
 	sum = 0
-
-	// If both start and end range are odd, return immediately as doubles are always even length
-	if len(start) == len(end) && len(start)%2 == 1 {
-		return
-	}
+	set := make(map[string]struct{})
 
 	startInt, _ := strconv.Atoi(start)
 	endInt, _ := strconv.Atoi(end)
 	for i := startInt; i <= endInt; i++ {
 		iString := strconv.Itoa(i)
 
-		if len(iString)%2 == 0 {
-			halvedLength := len(iString) / 2
-			if iString[:halvedLength] == iString[halvedLength:] {
-				sum += i
+		if len(iString) == 1 {
+			continue
+		}
+
+		maxSubStringLength := len(iString) / 2
+		for j := maxSubStringLength; j >= 1; j-- {
+			if hasRepeatedValues(iString, j) {
+				set[iString] = struct{}{}
 			}
 		}
+
+	}
+
+	for element := range set {
+		integer, _ := strconv.Atoi(element)
+		sum += integer
 	}
 
 	return
+}
+
+func hasRepeatedValues(evenLengthInteger string, numOfCharacters int) bool {
+	length := len(evenLengthInteger)
+	remainder := length % numOfCharacters
+	if remainder != 0 {
+		return false
+	}
+	firstNCharacters := evenLengthInteger[:numOfCharacters]
+	return evenLengthInteger == strings.Repeat(firstNCharacters, length/numOfCharacters)
 }
