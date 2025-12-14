@@ -1,12 +1,8 @@
-package main
+package day1
 
 import (
 	"strconv"
 )
-
-func main() {
-	return
-}
 
 func Rotations(rotations []string) (password int, err error) {
 	password = 0
