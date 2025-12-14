@@ -63,7 +63,7 @@ func TestExpectTenFromRotatingRight(t *testing.T) {
 	result, err := Day_One.Rotations(rotations)
 
 	if result != 10 || err != nil {
-		t.Errorf("Expected 1, got %d and error %v", result, err)
+		t.Errorf("Expected 10, got %d and error %v", result, err)
 	}
 }
 
@@ -72,7 +72,7 @@ func TestExpectTenFromRotatingLeft(t *testing.T) {
 	result, err := Day_One.Rotations(rotations)
 
 	if result != 10 || err != nil {
-		t.Errorf("Expected 1, got %d and error %v", result, err)
+		t.Errorf("Expected 10, got %d and error %v", result, err)
 	}
 }
 
